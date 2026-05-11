@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import userAvater from '@/assets/user.png'
+import NavLink from './NavLink';
 
 const Navbar = () => {
     return (
@@ -11,9 +12,9 @@ const Navbar = () => {
             </div>
 
             <ul className='flex justify-between items-center text-gray-600 gap-6'>
-                <li><Link href={"/"}>Home</Link></li>
-                <li><Link href={"/about"}>About</Link></li>
-                <li><Link href={"/career"}>Career</Link></li>
+                <li><NavLink href={'/'}>Home</NavLink></li>
+                <li><NavLink href={"/about"}>About</NavLink></li>
+                <li><NavLink href={"/career"}>Career</NavLink></li>
             </ul>
 
             <div className='flex justify-between items-center gap-2'>
@@ -21,7 +22,7 @@ const Navbar = () => {
                     src={userAvater}
                     alt='user avater'></Image>
                 <Link href={'/login'}>
-                    <button className='btn'>Login</button>
+                    <button className='btn bg-gray-700 text-white'>Login</button>
                 </Link>
             </div>
         </div>
