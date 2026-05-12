@@ -7,12 +7,24 @@ import { CiBookmark, CiShare2 } from "react-icons/ci";
 import { FaEye, FaStar } from "react-icons/fa";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
+export const generateMetadata =async({params}) =>{
+    const {id} = await params;
+    // console.log("params", id);
+    const news = await getNewsDetailsById(id)
+    console.log(news);
+
+    return {
+    title: news.title,
+    description: news.details,
+  }
+}
 
 const NewsDetailsPage = async ({ params }) => {
     const { id } = await params;
     // console.log(id, "news details id");
     const newsDetaisData = await getNewsDetailsById(id);
-    console.log(newsDetaisData);
+    // console.log(newsDetaisData);
+
     return (
         <div className="max-w-325 mx-auto my-15 grid grid-cols-12 gap-6">
             <div className="card bg-base-100 shadow-sm col-span-9">
