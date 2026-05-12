@@ -28,7 +28,7 @@ const BreakingNews = () => {
                     breakingNews.map(item => (
                         <h2 
                         key={item.id}
-                        className='mx-2'>{item.title}</h2>
+                        className='mx-2'>{item.title} .</h2>
                     ))
                 }
             </Marquee>
