@@ -8,4 +8,4 @@ const Home = () => {
   );
 };
 
-export default getCategory;
+export default Home;

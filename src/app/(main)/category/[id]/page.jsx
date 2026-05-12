@@ -1,4 +1,5 @@
 import LeftSideBar from '@/components/homePage/LeftSideBar';
+import NewsCard from '@/components/homePage/NewsCard';
 import RightSideBar from '@/components/homePage/RightSideBar';
 import { getCategory, getNewsByCategoryId } from '@/lib/data';
 
@@ -28,9 +29,9 @@ const NewsByCategoryPage = async ({ params }) => {
                         news.length > 0 ?
                             news.map((n) => {
                                 return (
-                                    <h2
-                                        className="bg-blue-50 p-2"
-                                        key={n.title}>{n.title}</h2>
+                                    <NewsCard
+                                        key={n._id}
+                                        news={n} />
                                 )
                             })
                             : <h2 className='text-xl font-semibold text-center text-purple-500'>No Data Found!</h2>
