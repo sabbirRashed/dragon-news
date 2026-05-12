@@ -20,7 +20,7 @@ const BreakingNews = () => {
 
     return (
         <div className='flex justify-between items-center gap-4 bg-gray-200 p-4 rounded-sm container mx-auto'>
-            <button className='btn bg-red-500 text-white'>Latest</button>
+            <button className='btn bg-red-500 text-white'>Latest News</button>
             <Marquee 
             speed={100}
             pauseOnHover={true}>

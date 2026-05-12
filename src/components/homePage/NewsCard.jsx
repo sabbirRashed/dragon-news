@@ -44,7 +44,7 @@ const NewsCard = ({ news }) => {
                 </figure>
                 <div>
                     <p className='line-clamp-3'>{news.details}</p>
-                    <Link href={"/"} className='text-amber-500 font-bold inline-block mt-1'>Read More</Link>
+                    <Link href={`/news/${news?._id}`} className='text-amber-500 font-bold inline-block mt-1'>Read More</Link>
                 </div>
 
                 <div className='flex justify-between items-center border-t border-t-base-300 pt-4'>
