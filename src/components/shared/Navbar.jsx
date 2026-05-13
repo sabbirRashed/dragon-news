@@ -7,7 +7,7 @@ import NavLink from './NavLink';
 const Navbar =() => {
  
     return (
-        <div className='flex justify-between items-center container mx-auto mt-4'>
+        <div className='flex justify-between items-center container mx-auto pt-4'>
             <div>
 
             </div>
@@ -21,7 +21,8 @@ const Navbar =() => {
             <div className='flex justify-between items-center gap-2'>
                 <Image
                     src={userAvater}
-                    alt='user avater'></Image>
+                    alt='user avater'
+                    className='rounded-full'></Image>
                 <Link href={'/login'}>
                     <button className='btn bg-gray-700 text-white'>Login</button>
                 </Link>

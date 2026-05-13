@@ -3,7 +3,7 @@ import React from 'react';
 
 const AuthLayout = ({children}) => {
     return (
-        <div>
+        <div className='bg-base-300'>
             <Navbar></Navbar>
             {children}
         </div>
