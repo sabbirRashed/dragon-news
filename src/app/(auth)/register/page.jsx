@@ -1,9 +1,12 @@
 "use client"
 
 import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const RegisterPage = () => {
+    const router = useRouter();
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -15,11 +18,22 @@ const RegisterPage = () => {
             name: name,
             email: email,
             password: password,
-            photoURL: photoURL,
-            callbackURL: '/'
+            image: photoURL,
         })
 
         console.log(serverData, error , "from-signup");
+        if(serverData){
+            toast.success("SignUp successfully",{
+                autoClose: 2000
+            })
+
+            router.push('/')
+        }
+        else{
+            toast.error(error.message, {
+                autoClose: 2000
+            })
+        }
 
     }
     // console.log(errors);

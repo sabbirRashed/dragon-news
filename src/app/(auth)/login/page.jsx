@@ -1,19 +1,38 @@
 "use client"
+import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 const LoginPage = () => {
 
-    const {register, handleSubmit, formState: {errors}} = useForm();
-    
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const handleLoginForm = (data) =>{
+
+    const handleLoginForm = async (data) => {
         const email = data.email;
         const password = data.password;
         console.log(email, password);
 
+        const { data: userData, error } = await authClient.signIn.email({
+            email: email,
+            password: password,
+            callbackURL: '/'
+        });
+        console.log(error);
+        if (userData) {
+            toast.success("Login successfully", {
+                autoClose: 2000
+            })
         
+        }
+        else {
+            toast.error(error.message, {
+                autoClose: 2000
+            })
+        }
+
     }
     // console.log(errors);
 
@@ -30,8 +49,8 @@ const LoginPage = () => {
                             type="email"
                             className="input"
                             placeholder="Enter your email address"
-                            {...register("email", {required: "Email is required"})} />
-                            {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
+                            {...register("email", { required: "Email is required" })} />
+                        {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
                     </fieldset>
 
                     <fieldset className="fieldset">
@@ -39,9 +58,9 @@ const LoginPage = () => {
                         <input
                             type="password"
                             className="input"
-                            placeholder="Enter your password" 
-                            {...register("password", {required: "Password is required"})} />
-                            {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
+                            placeholder="Enter your password"
+                            {...register("password", { required: "Password is required" })} />
+                        {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
                     </fieldset>
                     <button className='btn bg-slate-800 text-base-100 w-full'>Login</button>
 
