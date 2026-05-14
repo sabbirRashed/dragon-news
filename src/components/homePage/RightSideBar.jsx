@@ -5,12 +5,18 @@ import { FaFacebookF, FaGithub, FaGoogle, FaInstagram, FaTwitter } from 'react-i
 
 const RightSideBar = () => {
 
-    const handleGoogle = async() => {
+    const handleGoogle = async () => {
         const data = await authClient.signIn.social({
             provider: "google",
         });
     }
 
+    const handleGitHubSignIn = async () => {
+        const data = await authClient.signIn.social({
+            provider: "github",
+        });
+        console.log();
+    }
 
     return (
         <div className='space-y-6'>
@@ -22,7 +28,9 @@ const RightSideBar = () => {
                     <FaGoogle />
                     Login with Google
                 </button>
-                <button className='btn btn-outline'>
+                <button 
+                onClick={handleGitHubSignIn}
+                className='btn btn-outline'>
                     <FaGithub></FaGithub>
                     Login with GitHub
                 </button>
