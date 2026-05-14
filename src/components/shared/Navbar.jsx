@@ -34,11 +34,11 @@ const Navbar = () => {
                         : <>
                             {
                                 user ? <div>
-                                    <div className='flex justify-between items-center gap-2'>
+                                    <div className='flex justify-end items-center gap-2'>
                                         <Image
                                             src={user?.image || userAvater}
-                                            width={50}
-                                            height={50}
+                                            width={40}
+                                            height={40}
                                             alt='user avater'
                                             className='rounded-full'></Image>
                                         <button
