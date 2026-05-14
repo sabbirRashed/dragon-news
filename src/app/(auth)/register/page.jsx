@@ -16,9 +16,9 @@ const RegisterPage = () => {
     // console.log(errors);
 
     return (
-        <div className='container mx-auto min-h-[95vh] flex justify-center items-center'>
-            <div className='p-10 rounded-xl bg-white w-sm'>
-                <h2 className='font-bold text-xl text-center border-b border-b-base-300 pb-4'>Register Your Account</h2>
+        <div className='container mx-auto min-h-[80vh] flex justify-center items-center'>
+            <div className='p-8 md:p-10  rounded-xl bg-white  w-sm mx-4'>
+                <h2 className='font-bold text-xl text-center border-b border-b-base-300 pb-4'>Register your account</h2>
 
                 <form onSubmit={handleSubmit(handleRegisterForm)}
                     className='mt-6 space-y-4'>
@@ -62,7 +62,7 @@ const RegisterPage = () => {
                             {...register("password", { required: "Password is required" })} />
                         {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
                     </fieldset>
-                    <button className='btn bg-slate-800 text-base-100 w-full'>Login</button>
+                    <button className='btn bg-slate-800 text-base-100 w-full'>Register</button>
 
                 </form>
             </div>
