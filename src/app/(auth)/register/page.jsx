@@ -2,34 +2,37 @@
 
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 const RegisterPage = () => {
     const router = useRouter();
-
+    const [isShowPassword, setIsShowPassword] = useState(false);
+    console.log(isShowPassword);
     const { register, handleSubmit, formState: { errors } } = useForm();
 
 
-    const handleRegisterForm = async(data) => {
-        const {name, email, photoURL, password} = data;
+    const handleRegisterForm = async (data) => {
+        const { name, email, photoURL, password } = data;
 
-        const {data: serverData, error} = await authClient.signUp.email({
+        const { data: serverData, error } = await authClient.signUp.email({
             name: name,
             email: email,
             password: password,
             image: photoURL,
         })
 
-        console.log(serverData, error , "from-signup");
-        if(serverData){
-            toast.success("SignUp successfully",{
+        console.log(serverData, error, "from-signup");
+        if (serverData) {
+            toast.success("SignUp successfully", {
                 autoClose: 2000
             })
 
             router.push('/')
         }
-        else{
+        else {
             toast.error(error.message, {
                 autoClose: 2000
             })
@@ -38,7 +41,7 @@ const RegisterPage = () => {
     }
     // console.log(errors);
 
-  
+
 
     return (
         <div className='container mx-auto min-h-[80vh] flex justify-center items-center'>
@@ -78,13 +81,22 @@ const RegisterPage = () => {
                         {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
                     </fieldset>
 
-                    <fieldset className="fieldset">
+                    <fieldset className="fieldset relative">
                         <legend className="fieldset-legend">Password</legend>
                         <input
-                            type="password"
-                            className="input"
+                            type={isShowPassword ? "text" : "password"}
+                            className="input "
                             placeholder="Enter your password"
                             {...register("password", { required: "Password is required" })} />
+                        {
+                            isShowPassword ? <FaEye
+                                onClick={() => setIsShowPassword(!isShowPassword)}
+                                className='absolute top-4.5 right-3 cursor-pointer'></FaEye> 
+                                :
+                                <FaEyeSlash 
+                                onClick={( )=> setIsShowPassword(!isShowPassword)}
+                                className="absolute top-4.5 right-3 cursor-pointer"/>
+                        }
                         {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
                     </fieldset>
                     <button className='btn bg-slate-800 text-base-100 w-full'>Register</button>

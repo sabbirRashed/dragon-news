@@ -1,14 +1,15 @@
 "use client"
 import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 const LoginPage = () => {
+    const [isShowPassword, setIsShowPassword] = useState(false);
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-
 
     const handleLoginForm = async (data) => {
         const email = data.email;
@@ -25,7 +26,7 @@ const LoginPage = () => {
             toast.success("Login successfully", {
                 autoClose: 2000
             })
-        
+
         }
         else {
             toast.error(error.message, {
@@ -34,7 +35,6 @@ const LoginPage = () => {
         }
 
     }
-    // console.log(errors);
 
     return (
         <div className='container mx-auto min-h-[80vh] flex justify-center items-center'>
@@ -53,13 +53,22 @@ const LoginPage = () => {
                         {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
                     </fieldset>
 
-                    <fieldset className="fieldset">
+                    <fieldset className="fieldset relative">
                         <legend className="fieldset-legend">Password</legend>
                         <input
-                            type="password"
+                            type={isShowPassword ? "text" : "password"}
                             className="input"
                             placeholder="Enter your password"
                             {...register("password", { required: "Password is required" })} />
+                        {
+                            isShowPassword ? <FaEye
+                                onClick={() => setIsShowPassword(!isShowPassword)}
+                                className='absolute top-4.5 right-3 cursor-pointer' /> : 
+                                <FaEyeSlash 
+                                onClick={() => setIsShowPassword(!isShowPassword)}
+                                className='absolute top-4.5 right-3 cursor-pointer'/>
+                        }
+
                         {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
                     </fieldset>
                     <button className='btn bg-slate-800 text-base-100 w-full'>Login</button>
