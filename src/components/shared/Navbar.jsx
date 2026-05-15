@@ -12,9 +12,13 @@ const Navbar = () => {
 
 
     const { data: session, isPending } = authClient.useSession()
-    console.log(session?.user);
+ 
     const user = session?.user;
 
+    const logOut = async() =>{
+        await authClient.signOut();
+        
+    }
 
     return (
         <div className='flex justify-between items-center container mx-auto pt-4'>
@@ -23,7 +27,7 @@ const Navbar = () => {
             </div>
 
             <ul className='flex justify-between items-center text-gray-600 gap-6'>
-                <li><NavLink href={`/category/01`}>Home</NavLink></li>
+                <li><NavLink href={`/`}>Home</NavLink></li>
                 <li><NavLink href={"/about"}>About</NavLink></li>
                 <li><NavLink href={"/career"}>Career</NavLink></li>
             </ul>
@@ -42,7 +46,7 @@ const Navbar = () => {
                                             alt='user avater'
                                             className='rounded-full'></Image>
                                         <button
-                                            onClick={() => signOut()}
+                                            onClick={logOut}
                                             className='btn bg-gray-700 text-white'>Log Out</button>
                                     </div>
                                     <p className='text-sm text-right text-slate-800'>Welcome, {user.name}!</p>

@@ -29,7 +29,7 @@ const RightSideBar = () => {
                     Login with Google
                 </button>
                 <button 
-                onClick={handleGitHubSignIn}
+                onClick={()=>{handleGitHubSignIn()}}
                 className='btn btn-outline'>
                     <FaGithub></FaGithub>
                     Login with GitHub

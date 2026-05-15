@@ -21,7 +21,8 @@ const LoginPage = () => {
             password: password,
             callbackURL: '/'
         });
-        console.log(error);
+        // console.log(error);
+        
         if (userData) {
             toast.success("Login successfully", {
                 autoClose: 2000
