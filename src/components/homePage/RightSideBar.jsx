@@ -15,7 +15,7 @@ const RightSideBar = () => {
         const data = await authClient.signIn.social({
             provider: "github",
         });
-        console.log();
+        
     }
 
     return (

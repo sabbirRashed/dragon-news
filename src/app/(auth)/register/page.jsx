@@ -10,7 +10,6 @@ import { toast } from "react-toastify";
 const RegisterPage = () => {
     const router = useRouter();
     const [isShowPassword, setIsShowPassword] = useState(false);
-    console.log(isShowPassword);
     const { register, handleSubmit, formState: { errors } } = useForm();
 
 
@@ -24,7 +23,7 @@ const RegisterPage = () => {
             image: photoURL,
         })
 
-        console.log(serverData, error, "from-signup");
+        
         if (serverData) {
             toast.success("SignUp successfully", {
                 autoClose: 2000
